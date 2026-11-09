@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+    <title>Pontons</title>
+</head>
+<body>
+  <div class="site-header-wrap">
+    <header class="site-title-header" aria-label="Capçalera de Pontons">
+      <h2>Una escapada per Pontons</h2>
+    </header>
+    <header class="site-crest-header" aria-label="Escut de Pontons">
+      <img src="fotos/Escut_de_Pontons.svg.webp" alt="Escut de Pontons">
+    </header>
+  </div>
+
+  <section>
+    <nav id="site-navigation" aria-label="Navegació principal"></nav>
+  <article>
+    <form class="contact-form" action="gracies.html">
+      <fieldset>
+        <legend>Dades del client</legend>
+
+        <div class="grup-input">
+          <label for="nom" class="obligatori">Nom i cognoms:</label>
+          <input type="text" id="nom" name="nom" size="25" maxlength="125" placeholder="Escriu el teu nom i cognoms" required>
+          <span class="missatge-error">Introdueix el teu nom i cognoms.</span>
+        </div>
+
+        <div class="grup-input">
+          <label for="document" class="obligatori">Document d'identitat (NIE):</label>
+          <input type="text" id="document" name="document" size="25" maxlength="9" placeholder="X1234567A" pattern="[0-9XYZ][0-9]{7}[A-Z]" title="Un número o X, Y o Z, set xifres i una lletra majúscula" required>
+          <span class="missatge-error">Format: un número o X, Y o Z, set xifres i una lletra majúscula (ex. X1234567A).</span>
+        </div>
+
+        <div class="grup-input">
+          <label for="email" class="obligatori">Correu electrònic:</label>
+          <input type="email" id="email" name="email" size="25" maxlength="60" placeholder="nom@exemple.com" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" title="Introdueix una adreça del tipus nom@servidor.domini" required>
+          <span class="missatge-error">Introdueix una adreça vàlida del tipus nom@servidor.domini.</span>
+        </div>
+
+        <div class="grup-input">
+          <label for="contrasenya" class="obligatori">Contrasenya:</label>
+          <input type="password" id="contrasenya" name="contrasenya" size="25" minlength="6" maxlength="30" autocomplete="new-password" placeholder="6 caràcters o més, amb majúscula, número i símbol" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}" title="Com a mínim 6 caràcters, amb una minúscula, una majúscula, un número i un símbol" required>
+          <span class="missatge-error">Fes servir 6 caràcters com a mínim, amb una minúscula, una majúscula, un número i un símbol.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tipus de client</legend>
+        <div class="opcions-formulari">
+          <input type="radio" id="particular" name="tipus-client" value="particular" checked>
+          <label for="particular">Particular</label>
+          <input type="radio" id="empresa" name="tipus-client" value="empresa">
+          <label for="empresa">Empresa</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Imprescindibles per a la ruta</legend>
+
+        <div class="grup-input">
+          <label for="lloc" class="obligatori">Lloc de visita:</label>
+          <select id="lloc" name="lloc" required>
+            <option value="" disabled selected>Tria un lloc</option>
+            <option value="placa">El Papa</option>
+            <option value="pont">Els Caçadors</option>
+            <option value="riu">Mas de Pontons</option>
+          </select>
+          <span class="missatge-error">Selecciona un lloc per visitar.</span>
+        </div>
+
+        <div class="grup-input">
+          <label for="menjar" class="obligatori">Menjar:</label>
+          <select id="menjar" name="menjar" multiple size="3" required>
+            <option value="amanida">Pastis de sardina amb catanies</option>
+            <option value="paella">Vi rosat</option>
+            <option value="escalivada">Morcilla</option>
+          </select>
+          <span class="missatge-error">Selecciona com a mínim una opció de menjar.</span>
+        </div>
+
+        <div class="grup-input">
+          <label for="persones" class="obligatori">Nombre de persones:</label>
+          <input type="number" id="persones" name="persones" min="1" max="20" value="1" required>
+          <span class="missatge-error">Indica entre 1 i 20 persones.</span>
+        </div>
+
+        <div class="grup-input grup-condicions">
+          <input type="checkbox" id="condicions" name="condicions" value="acceptades" required>
+          <label for="condicions" class="obligatori">Accepto les condicions del servei.</label>
+          <span class="missatge-error">Cal acceptar les condicions per continuar.</span>
+        </div>
+      </fieldset>
+
+      <div class="botons-formulari">
+        <button type="submit">Enviar formulari</button>
+        <button type="reset">Esborrar formulari</button>
+      </div>
+    </form>
+  </article>
+</section>
+
+<footer>
+  <p>By Pol Escobar Juarez</p>
+</footer>
+
+</body>
+</html>
