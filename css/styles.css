@@ -1,3 +1,4 @@
+/* Define el tema general, la tipografía, los colores y las variables reutilizables del sitio. */
 :root {
   color-scheme: light;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -14,26 +15,30 @@
   --shadow: 0 12px 32px rgb(34 57 42 / 9%);
 }
 
+/* Hace que el ancho y alto de los elementos incluyan el relleno y los bordes. */
 * {
   box-sizing: border-box;
 }
 
+/* Quita el margen predeterminado del documento y establece el ancho mínimo y el interlineado. */
 body {
   min-width: 320px;
   margin: 0;
   line-height: 1.65;
 }
 
+/* Organiza la cabecera con un azul más intenso y texto blanco para mantener el contraste. */
 .site-header-wrap {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 28px max(24px, calc((100% - 1120px) / 2));
+  gap: 37px;
+  padding: 28px max(37px, calc((100% - 1120px) / 2)) 44px;
   color: #fff;
-  background: linear-gradient(120deg, #193f30, #36734e);
+  background: #2879a8;
 }
 
+/* Da formato al título principal de la cabecera y adapta su tamaño a la pantalla. */
 .site-title-header h2 {
   margin: 0;
   color: #fff;
@@ -41,20 +46,23 @@ body {
   line-height: 1.2;
 }
 
+/* Ajusta el escudo de la cabecera para que se muestre como una imagen circular. */
 .site-crest-header img {
   display: block;
-  width: 76px;
-  height: 76px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   border-radius: 50%;
 }
 
+/* Centra las secciones principales y limita su ancho para facilitar la lectura. */
 body > section {
   width: min(1120px, calc(100% - 40px));
   min-height: 55vh;
   margin: 28px auto;
 }
 
+/* Presenta la navegación como una tarjeta con bordes redondeados y sombra. */
 nav {
   margin-bottom: 24px;
   overflow: hidden;
@@ -64,36 +72,42 @@ nav {
   box-shadow: var(--shadow);
 }
 
+/* Distribuye horizontalmente los elementos de navegación y elimina las viñetas. */
 nav ul {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+  flex-wrap: nowrap;
+  gap: 3px;
   margin: 0;
   padding: 8px;
   list-style: none;
 }
 
+/* Reparte por igual el espacio disponible entre las opciones de navegación. */
+nav li {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Convierte cada enlace de navegación en un botón de texto centrado. */
 nav a {
   display: block;
   padding: 10px 16px;
   border-radius: 9px;
   color: var(--green-dark);
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
+/* Resalta los enlaces cuando se pasa el cursor o se llega a ellos con el teclado. */
 nav a:hover,
 nav a:focus-visible {
   background: var(--green-light);
   outline: none;
 }
 
-nav a.active {
-  color: #fff;
-  background: var(--green);
-}
-
+/* Da formato de tarjeta a los artículos, con espacio interior, borde y sombra. */
 article {
   padding: clamp(22px, 4vw, 42px);
   border: 1px solid var(--border);
@@ -102,6 +116,7 @@ article {
   box-shadow: var(--shadow);
 }
 
+/* Unifica el color y el interlineado de los encabezados. */
 h1,
 h2,
 h3,
@@ -110,12 +125,14 @@ h4 {
   line-height: 1.25;
 }
 
+/* Elimina el espacio superior de los encabezados dentro de los artículos. */
 article h1,
 article h2,
 article h3 {
   margin-top: 0;
 }
 
+/* Coloca en fila los elementos de cada fila flexible y separa sus columnas. */
 .row.flex {
   display: flex;
   align-items: center;
@@ -123,15 +140,18 @@ article h3 {
   margin-bottom: 28px;
 }
 
+/* Evita dejar espacio inferior después de la última fila flexible. */
 .row.flex:last-child {
   margin-bottom: 0;
 }
 
+/* Permite que las columnas compartan el espacio disponible sin desbordarse. */
 .column {
   flex: 1 1 0;
   min-width: 0;
 }
 
+/* Ajusta las imágenes de las columnas y la imagen de Pontons al ancho disponible. */
 .column img,
 .imatge-pontons {
   display: block;
@@ -141,27 +161,74 @@ article h3 {
   object-fit: cover;
 }
 
+/*
+  La columna experience-images contiene las dos fotos de experiencia.
+  La convertimos en una cuadrícula para poder colocar las imágenes una junto a otra
+  cuando hay espacio y en una sola columna cuando la pantalla es más estrecha.
+*/
+.experience-images {
+  /* Activa la distribución en cuadrícula para las imágenes hijas. */
+  display: grid;
+  /*
+    Crea tantas columnas como quepan. Cada columna intenta medir al menos 220px
+    y comparte el espacio disponible (1fr). Si no caben dos, queda una sola.
+  */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  /* Alinea verticalmente las imágenes dentro de las celdas de la cuadrícula. */
+  align-items: center;
+  /* Deja 16px de separación entre las dos fotos. */
+  gap: 16px;
+}
+
+.experience-images img {
+  /* La imagen puede ocupar todo el ancho de su celda, sin salirse de ella. */
+  width: 100%;
+  /* Calcula la altura automáticamente para conservar la proporción original. */
+  height: auto;
+  /* Anula el límite de altura de la regla general de imágenes (.column img). */
+  max-height: none;
+  /* Muestra la foto completa en lugar de recortar sus bordes. */
+  object-fit: contain;
+}
+
+/* Centra los elementos de la fila de imágenes de la página de inicio. */
 .home-image-row {
   justify-content: center;
 }
 
+/* Permite que la imagen principal de inicio alcance una altura máxima mayor. */
 .home-image-row .imatge-pontons {
   max-height: 460px;
 }
 
+/* Hace que el elemento con la clase de título ocupe todo el ancho disponible. */
 .titol {
   width: 100%;
 }
 
+/* Añade sangría a las listas ordenadas y a las listas dentro de los artículos. */
 ol,
 article ul {
   padding-left: 1.4rem;
 }
 
-li + li {
+/*
+  Este ajuste corrige un problema visual del menú:
+  antes había una regla general que aplicaba margen superior a todos los <li>.
+  Como el nav también usa elementos <li>, la primera opción se desplazaba hacia arriba.
+  Por eso aquí se restringe el margen solo a las listas de contenido dentro de los articles.
+  La navegación principal queda sin ese espacio extra para conservar la alineación correcta.
+*/
+article ul li + li,
+article ol li + li {
   margin-top: 8px;
 }
 
+nav li + li {
+  margin-top: 0;
+}
+
+/* Crea una cuadrícula de imágenes adaptable al ancho disponible. */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
@@ -169,12 +236,14 @@ li + li {
   margin: 20px 0 30px;
 }
 
+/* Recorta el contenido que sobresalga de cada tarjeta de la galería. */
 .gallery-item {
   overflow: hidden;
   border-radius: 12px;
   background: var(--green-light);
 }
 
+/* Mantiene la proporción de las imágenes de la galería y suaviza su ampliación. */
 .gallery-item img {
   display: block;
   width: 100%;
@@ -183,15 +252,18 @@ li + li {
   transition: transform 180ms ease;
 }
 
+/* Amplía ligeramente la imagen de la galería al pasar el cursor sobre su enlace. */
 .gallery-item a:hover img {
   transform: scale(1.04);
 }
 
+/* Organiza los campos del formulario en una columna con separación uniforme. */
 .contact-form {
   display: grid;
   gap: 20px;
 }
 
+/* Distribuye los elementos de cada grupo del formulario y dibuja su contorno. */
 fieldset {
   display: grid;
   gap: 16px;
@@ -202,17 +274,20 @@ fieldset {
   border-radius: 12px;
 }
 
+/* Destaca el título de cada grupo de campos del formulario. */
 legend {
   padding: 0 8px;
   color: var(--green-dark);
   font-weight: 700;
 }
 
+/* Coloca la etiqueta y el control de cada campo en una cuadrícula vertical. */
 .grup-input {
   display: grid;
   gap: 6px;
 }
 
+/* Da formato coherente a los campos de texto y selectores del formulario. */
 .grup-input input,
 .grup-input select {
   width: 100%;
@@ -225,12 +300,14 @@ legend {
   font: inherit;
 }
 
+/* Señala visualmente el campo que tiene el foco y mejora su accesibilidad. */
 .grup-input input:focus,
 .grup-input select:focus {
   border-color: var(--green);
   outline: 3px solid rgb(36 92 67 / 15%);
 }
 
+/* Ordena horizontalmente las opciones del formulario y permite que salten de línea. */
 .opcions-formulari {
   display: flex;
   flex-wrap: wrap;
@@ -238,26 +315,31 @@ legend {
   gap: 10px;
 }
 
+/* Coloca la casilla de condiciones junto a su texto en dos columnas. */
 .grup-condicions {
   grid-template-columns: auto 1fr;
   align-items: center;
 }
 
+/* Hace que el mensaje de error del grupo de condiciones ocupe ambas columnas. */
 .grup-condicions .missatge-error {
   grid-column: 1 / -1;
 }
 
+/* Muestra los mensajes de error con color y tamaño de texto diferenciados. */
 .missatge-error {
   color: #a23832;
   font-size: 0.9rem;
 }
 
+/* Alinea los botones del formulario y permite que se distribuyan en varias líneas. */
 .botons-formulari {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
 }
 
+/* Define el aspecto común de los botones y el cursor que indica que son interactivos. */
 button {
   min-height: 44px;
   padding: 10px 18px;
@@ -270,57 +352,72 @@ button {
   cursor: pointer;
 }
 
+/* Diferencia el botón de restablecimiento con un fondo claro y texto oscuro. */
 button[type="reset"] {
   background: #fff;
   color: var(--green-dark);
 }
 
+/* Oscurece los botones al pasar el cursor para señalar la interacción. */
 button:hover {
   background: var(--green-dark);
   color: #fff;
 }
 
+/* Mantiene el pie centrado con un azul intenso a juego con la cabecera. */
 footer {
   padding: 18px 24px;
-  color: var(--muted);
+  color: #fff;
+  background: #2879a8;
+  border-top: 1px solid #1f668f;
   text-align: center;
 }
 
+/* Elimina el margen del párrafo del pie de página. */
 footer p {
   margin: 0;
+  color:aliceblue
 }
 
+/* Adapta la distribución y los espacios para pantallas de hasta 680 píxeles. */
 @media (max-width: 680px) {
+  /* Reduce el relleno de la cabecera en pantallas pequeñas. */
   .site-header-wrap {
-    padding: 22px 20px;
+    padding: 22px 20px 38px;
   }
 
+  /* Reduce el tamaño del escudo en pantallas pequeñas. */
   .site-crest-header img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
   }
 
+  /* Aprovecha el ancho móvil y reduce el margen entre las secciones. */
   body > section {
     width: min(100% - 24px, 1120px);
     margin: 16px auto;
   }
 
+  /* Distribuye los enlaces de navegación en dos columnas en móvil. */
   nav ul {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  /* Reduce el relleno y el tamaño de letra de los enlaces en móvil. */
   nav a {
     padding: 9px 10px;
     font-size: 0.92rem;
   }
 
+  /* Apila verticalmente las columnas y ajusta la separación entre ellas. */
   .row.flex {
     align-items: stretch;
     flex-direction: column;
     gap: 18px;
   }
 
+  /* Reduce el relleno interior de los artículos en pantallas pequeñas. */
   article {
     padding: 22px 18px;
   }
