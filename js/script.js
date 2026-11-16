@@ -8,8 +8,9 @@ const navigationItems = [
   { href: "index.html", label: "Em Presento" },
   { href: "experiencia.html", label: "Experiencia laboral" },
   { href: "qualificacions.html", label: "Qualificacions" },
-  { href: "habilitats.html", label: "Hard Skills/Soft Skills" },
-  { href: "contacte.html", label: "Envia'm l'oferta aqui" }
+  { href: "habilitats.html", label: "Competències" },
+  { href: "galeria.html", label: "Galeria de projectes" },
+  { href: "contacte.html", label: "Envia'm l'oferta aquí" }
 ];
 
 // 2) Localizamos el contenedor del nav en cada página.
